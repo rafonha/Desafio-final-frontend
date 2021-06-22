@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mais Milhas</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Faça a viagem dos seus sonhos</h1>
+        <p>Use milhas para ter os melhores pacotes de viagens e aproveite suas férias</p>
+    </header>
+    <main>
+        <section>
+            <label for="pais-origem">País de Origem: </label>
+            <select name="pais-origem" id="pais-origem"></select>
+            <label for="pais-destino">País de Destino: </label>
+            <select name="pais-destino" id="pais-destino"></select>
+            <label for="cidade-origem">Cidade de Origem: </label>
+            <select name="cidade-origem" id="cidade-origem"></select>
+            <label for="cidade-destino">Cidade de Destino: </label>
+            <select name="cidade-destino" id="cidade-destino"></select>
+            <!-- <input type="date" name="data-ida" id="data-ida" placeholder="Data de ida">
+            <input type="date" name="data-volta" id="data-volta" placeholder="Data de retorno"> -->
+            <div>
+                <div>
+                    <label for="num-adultos">Adultos</label>
+                    <button id="menos-adulto" onclick="decreaseAdult()">-</button>
+                    <input type="number" name="num-adultos" id="num-adultos" value="1" disabled>
+                    <button id="mais-adulto" onclick="increaseAdult()">+</button>
+                </div>
+                <div>
+                    <label for="num-criancas">Crianças</label>
+                    <button id="menos-crianca" onclick="decreaseChild()">-</button>
+                    <input type="number" name="num-criancas" id="num-criancas" value="0" disabled>
+                    <button id="mais-crianca" onclick="increaseChild()">+</button>
+                </div>
+                <div>
+                    <input type="radio" name="classe-ticket" id="classe-economica" value="Classe Econômica" checked>
+                    <label for="classe-economica">Classe Econômica</label>
+                    <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva">
+                    <label for="classe-executiva">Classe Executiva</label>
+                </div>
+            </div>
+            <!-- <input type="submit" value="Buscar"> -->
+        </section>
+        <section id="resultado"></section>
+    </main>
+
+    <script defer src="script.js"></script>
+</body>
+</html>
