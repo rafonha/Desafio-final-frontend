@@ -16,15 +16,13 @@
     <main>
         <section>
             <label for="pais-origem">País de Origem: </label>
-            <select name="pais-origem" id="pais-origem"></select>
+            <select name="pais-origem" id="pais-origem" onchange="renderCityOption()"></select>
             <label for="pais-destino">País de Destino: </label>
-            <select name="pais-destino" id="pais-destino"></select>
+            <select name="pais-destino" id="pais-destino" onchange="renderCityOption()"></select>
             <label for="cidade-origem">Cidade de Origem: </label>
             <select name="cidade-origem" id="cidade-origem"></select>
             <label for="cidade-destino">Cidade de Destino: </label>
             <select name="cidade-destino" id="cidade-destino"></select>
-            <!-- <input type="date" name="data-ida" id="data-ida" placeholder="Data de ida">
-            <input type="date" name="data-volta" id="data-volta" placeholder="Data de retorno"> -->
             <div>
                 <div>
                     <label for="num-adultos">Adultos</label>
