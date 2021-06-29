@@ -103,26 +103,29 @@ function renderCityOption() {
         if(allTrips[i].country === countryOrigin.value){
             allTrips[i]['cities'].forEach(cityOption => {
                 const { city } = cityOption;
-        
+
                 const cityOHTML = `<option value="${city}">${city}</option>`
                 cityOriginHTML += cityOHTML
             })
-        } 
+        }
 
         if(allTrips[i].country === countryDestination.value){
             allTrips[i]['cities'].forEach(cityOption => {
                 const { city } = cityOption;
-        
+
                 const cityDHTML = `<option value="${city}">${city}</option>`
                 cityDestinationHTML += cityDHTML
             })
-        } 
-
-        //remover a cidade igual
+        }
     }
 
     cityOrigin.innerHTML = cityOriginHTML;
     cityDestination.innerHTML = cityDestinationHTML;
+
+    //remover a cidade igual de origem e destino
+    if (cityOrigin.value === cityDestination.value) {
+        cityDestination.remove(cityDestination.value)
+    }
 }
 
 function renderDistance() {
@@ -194,11 +197,6 @@ function renderResults() {
     <p>R$ ${costTicketAdult} por adulto</p>
     <p>R$ ${costTicketChild} por criança</p>
     <p>Valor total das passagens: R$ ${totalCost}</p>
-    <label for="miles">Deseja usar milhas?</label>
-    <div class="flex">
-        <input type="range" name="miles" id="miles" min="0" max="10000" value="0" onchange="updateMilesInput(this.value)";>
-        <input type="text" id="milesValue" value="0">
-    </div> 
     `
 }
 

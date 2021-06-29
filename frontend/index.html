@@ -42,6 +42,11 @@
                     <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva">
                     <label for="classe-executiva">Classe Executiva</label>
                 </div>
+                <div class="flex">
+                    <label for="miles">Deseja usar milhas?</label>
+                    <input type="range" name="miles" id="miles" min="0" max="10000" value="0" onchange="updateMilesInput(this.value)";>
+                    <input type="text" id="milesValue" value="0">
+                </div>
             </div>
             <!-- <input type="submit" value="Buscar"> -->
         </section>
