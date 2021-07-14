@@ -15,38 +15,45 @@
     </header>
     <main>
         <section>
-            <label for="pais-origem">País de Origem: </label>
-            <select name="pais-origem" id="pais-origem" onchange="renderCityOption()"></select>
-            <label for="pais-destino">País de Destino: </label>
-            <select name="pais-destino" id="pais-destino" onchange="renderCityOption()"></select>
-            <label for="cidade-origem">Cidade de Origem: </label>
-            <select name="cidade-origem" id="cidade-origem"></select>
-            <label for="cidade-destino">Cidade de Destino: </label>
-            <select name="cidade-destino" id="cidade-destino"></select>
+            <h2>Escolha sua viagem</h2>
             <div>
-                <div>
-                    <label for="num-adultos">Adultos</label>
-                    <button id="menos-adulto" onclick="decreaseAdult()">-</button>
-                    <input type="number" name="num-adultos" id="num-adultos" value="1" disabled>
-                    <button id="mais-adulto" onclick="increaseAdult()">+</button>
-                </div>
-                <div>
-                    <label for="num-criancas">Crianças</label>
-                    <button id="menos-crianca" onclick="decreaseChild()">-</button>
-                    <input type="number" name="num-criancas" id="num-criancas" value="0" disabled>
-                    <button id="mais-crianca" onclick="increaseChild()">+</button>
-                </div>
-                <div>
-                    <input type="radio" name="classe-ticket" id="classe-economica" value="Classe Econômica" checked>
-                    <label for="classe-economica">Classe Econômica</label>
-                    <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva">
-                    <label for="classe-executiva">Classe Executiva</label>
-                </div>
-                <div class="flex">
-                    <label for="miles">Deseja usar milhas?</label>
-                    <input type="range" name="miles" id="miles" min="0" max="10000" value="0" onchange="updateMilesInput(this.value)";>
-                    <input type="text" id="milesValue" value="0">
-                </div>
+                <label for="pais-origem">País de Origem: </label>
+                <select name="pais-origem" id="pais-origem" onchange="renderCityOption()"></select>
+            </div>
+            <div>
+                <label for="pais-destino">País de Destino: </label>
+                <select name="pais-destino" id="pais-destino" onchange="renderCityOption()"></select>
+            </div>
+            <div>
+                <label for="cidade-origem">Cidade de Origem: </label>
+                <select name="cidade-origem" id="cidade-origem"></select>
+            </div>
+            <div>
+                <label for="cidade-destino">Cidade de Destino: </label>
+                <select name="cidade-destino" id="cidade-destino"></select>
+            </div>
+            <div>
+                <label for="num-adultos">Adultos</label>
+                <button id="menos-adulto" onclick="decreaseAdult()">-</button>
+                <input type="number" name="num-adultos" id="num-adultos" value="1" disabled>
+                <button id="mais-adulto" onclick="increaseAdult()">+</button>
+            </div>
+            <div>
+                <label for="num-criancas">Crianças</label>
+                <button id="menos-crianca" onclick="decreaseChild()">-</button>
+                <input type="number" name="num-criancas" id="num-criancas" value="0" disabled>
+                <button id="mais-crianca" onclick="increaseChild()">+</button>
+            </div>
+            <div>
+                <input type="radio" name="classe-ticket" id="classe-economica" value="Classe Econômica" checked>
+                <label for="classe-economica">Classe Econômica</label>
+                <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva">
+                <label for="classe-executiva">Classe Executiva</label>
+            </div>
+            <div class="flex">
+                <label for="miles">Deseja usar milhas?</label>
+                <input type="range" name="miles" id="miles" min="0" max="10000" value="0" onchange="updateMilesInput(this.value)";>
+                <input type="number" id="milesValue" value="0">
             </div>
             <!-- <input type="submit" value="Buscar"> -->
         </section>

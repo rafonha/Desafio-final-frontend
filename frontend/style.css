@@ -3,6 +3,33 @@ body {
     margin: 0 auto;
 }
 
+h2 {
+    margin: 0;
+}
+
 .flex {
     display: flex;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    display: flex;
+}
+
+section {
+    width: 50%;
+    border: 0.5px solid gray;
+    margin: 10px;
+    padding: 20px;
+}
+
+div {
+    margin: 15px 0;
+}
+
+#num-adultos, #num-criancas, #milesValue {
+    max-width: 50px;
 }
