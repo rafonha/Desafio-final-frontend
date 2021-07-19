@@ -1,12 +1,14 @@
 //O que falta fazer: 
 // 3. Pegar latutude e longitude de cidade de origem e destino
 
+//Constantes
 const numberFormatter = new Intl.NumberFormat('pt-BR');
 const moneyFormatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
 
+// Variáveis
 let countryOrigin = document.querySelector('#pais-origem');
 let countryDestination = document.querySelector('#pais-destino');
 let cityOrigin = document.querySelector('#cidade-origem');
@@ -28,6 +30,7 @@ let countTotalTrips = document.querySelector('#countTotalTrips');
 let miles = 0;
 let milesCost = 0;
 
+// Funções auxiliares
 function helperFormatValue(value) {
     return numberFormatter.format(value);
 }
@@ -36,6 +39,7 @@ function helperFormatMoney(value) {
     return moneyFormatter.format(value);
 }
 
+// Funções 
 function degreesToRadians(degreeValue) {
     return degreeValue * (Math.PI / 180);
 } 
@@ -51,10 +55,12 @@ function ticketWithMiles() {
     milesCost = helperFormatMoney(milesCost)
 }
 
+// Função para iniciar a aplicação
 async function start() {
     await fetchCountries()
 }
 
+// Pegar as informações do json
 async function fetchCountries(){
     const resource = await fetch('http://localhost:3001/countries');
     const json = await resource.json();
@@ -63,6 +69,7 @@ async function fetchCountries(){
     render();
 }
 
+// Renderizar as funções
 function render() {
 
     renderCountryOption();
@@ -73,6 +80,7 @@ function render() {
     renderResults();
 }
 
+// Pegar as informações do JSON e renderizar os países
 function renderCountryOption() {
 
     let contriesHTML = ''
@@ -88,6 +96,7 @@ function renderCountryOption() {
     countryDestination.innerHTML = contriesHTML;
 }
 
+// Pegar as informações do JSON e renderizar as cidades do país de origem e destino
 function renderCityOption() {
     let cityOriginHTML = ''
     let cityDestinationHTML = ''
@@ -118,11 +127,19 @@ function renderCityOption() {
     renderResults();
 }
 
+// Pegar as informações do JSON e renderizar a latitude / longitude 
 function renderLatAndLon() {
 
-    allTrips.forEach(country => country.cities.filter(city => city.city === cityOrigin))
+    const cityOrig = allTrips.forEach(country => country.cities.filter(city => city.city === cityOrigin.value))
+    latOrigin = cityOrig.latitude
+    lonOrigin = cityOrig.longitude
+
+    const cityDest = allTrips.forEach(country => country.cities.filter(city => city.city === cityDestination.value))
+    latDestination = cityDest.latitude
+    lonDestination = cityDest.longitude
 }
 
+//Renderizar a distância 
 function renderDistance() {
     const EARTH_RADIUS = 6_371.071; // Earth
 
@@ -153,6 +170,7 @@ function renderDistance() {
     distance = kmDistance.toFixed(2)
 }
 
+// Renderizar o preço
 function renderPrice() {    
     countryOrigin.value === countryDestination.value ? costTicketAdult = distance * 0.3 : costTicketAdult = distance * 0.5;
     countryOrigin.value === countryDestination.value ? costTicketChild = distance * 0.15 : costTicketChild = distance * 0.25;
@@ -169,13 +187,16 @@ function renderPrice() {
     costTicketAdult = helperFormatMoney(costTicketAdult)
     costTicketChild = helperFormatMoney(costTicketChild)
     totalCost = helperFormatMoney(totalCost)
+    miles = helperFormatValue(miles)
 };
 
+//Template literals com os resultados
 function renderResults() {
     renderPrice()
-    //remover a cidade igual de origem e destino
+    //se cidade igual de origem e destino
     if (cityOrigin.value === cityDestination.value) {
         results.innerHTML = `
+        <h2>Atenção</h2>
         <p>Não é possível viajar para a mesma cidade de origem</p>
         `
     } else {
@@ -189,7 +210,7 @@ function renderResults() {
         <p>${costTicketAdult} por adulto</p>
         <p>${costTicketChild} por criança</p>
         <p>Valor total das passagens: ${totalCost}</p>
-        <p>Quantidade de milhas usadas: ${miles} </p>
+        <p>Quantidade de milhas usadas: ${miles} milhas</p>
         <p>Valor economizado por milhas: ${milesCost}</p>
         `
     }
