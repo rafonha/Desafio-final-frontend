@@ -12,10 +12,10 @@ let countryDestination = document.querySelector('#pais-destino');
 let cityOrigin = document.querySelector('#cidade-origem');
 let cityDestination = document.querySelector('#cidade-destino');
 let distance = 0;
-let latOrigin = 25;
-let lonOrigin = 15;
-let latDestination = -95;
-let lonDestination = 12;
+let latOrigin = null;
+let lonOrigin = null;
+let latDestination = null;
+let lonDestination = null;
 let radioEconomicClass = document.querySelector('#classe-economica');
 let radioFirstClass = document.querySelector('#classe-executiva');
 let adults = document.querySelector('#num-adultos');
@@ -120,6 +120,7 @@ function renderCityOption() {
 
 function renderLatAndLon() {
 
+    allTrips.forEach(country => country.cities.filter(city => city.city === cityOrigin))
 }
 
 function renderDistance() {
