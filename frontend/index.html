@@ -26,36 +26,30 @@
             </div>
             <div>
                 <label for="cidade-origem">Cidade de Origem: </label>
-                <select name="cidade-origem" id="cidade-origem"></select>
+                <select name="cidade-origem" id="cidade-origem" onchange="renderResults()"></select>
             </div>
             <div>
                 <label for="cidade-destino">Cidade de Destino: </label>
-                <select name="cidade-destino" id="cidade-destino"></select>
+                <select name="cidade-destino" id="cidade-destino" onchange="renderResults()"></select>
             </div>
             <div>
                 <label for="num-adultos">Adultos</label>
-                <button id="menos-adulto" onclick="decreaseAdult()">-</button>
-                <input type="number" name="num-adultos" id="num-adultos" value="1" disabled>
-                <button id="mais-adulto" onclick="increaseAdult()">+</button>
+                <input type="number" name="num-adultos" id="num-adultos" min="0" value="1" onchange="renderResults()">
             </div>
             <div>
                 <label for="num-criancas">Crianças</label>
-                <button id="menos-crianca" onclick="decreaseChild()">-</button>
-                <input type="number" name="num-criancas" id="num-criancas" value="0" disabled>
-                <button id="mais-crianca" onclick="increaseChild()">+</button>
+                <input type="number" name="num-criancas" id="num-criancas" min="0" value="0" onchange="renderResults()">
             </div>
             <div>
-                <input type="radio" name="classe-ticket" id="classe-economica" value="Classe Econômica" checked>
+                <input type="radio" name="classe-ticket" id="classe-economica" value="Classe Econômica" checked onchange="renderResults()">
                 <label for="classe-economica">Classe Econômica</label>
-                <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva">
+                <input type="radio" name="classe-ticket" id="classe-executiva" value="Classe Executiva" onchange="renderResults()">
                 <label for="classe-executiva">Classe Executiva</label>
             </div>
             <div class="flex">
                 <label for="miles">Deseja usar milhas?</label>
-                <input type="range" name="miles" id="miles" min="0" max="10000" value="0" onchange="updateMilesInput(this.value)";>
-                <input type="number" id="milesValue" value="0">
+                <input type="range" name="miles" id="miles" min="0" max="100000" value="0" onchange="updateMilesInput(this.value)">
             </div>
-            <!-- <input type="submit" value="Buscar"> -->
         </section>
         <section id="resultado"></section>
     </main>
