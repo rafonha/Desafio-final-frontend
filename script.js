@@ -52,7 +52,6 @@ function updateMilesInput(val) {
 function ticketWithMiles() {
     milesCost = miles * 0.02;
     totalCost = totalCost - milesCost;
-    milesCost = helperFormatMoney(milesCost)
 }
 
 // Função para iniciar a aplicação
@@ -130,13 +129,24 @@ function renderCityOption() {
 // Pegar as informações do JSON e renderizar a latitude / longitude 
 function renderLatAndLon() {
 
-    const cityOrig = allTrips.forEach(country => country.cities.filter(city => city.city === cityOrigin.value))
-    latOrigin = cityOrig.latitude
-    lonOrigin = cityOrig.longitude
+    let cityOrig
+    for (let i = 0; i < allTrips.length; i++) {
+        if(allTrips[i].country === countryOrigin.value){
+            cityOrig = allTrips[i]['cities'].find(city => city.city === cityOrigin.value);
+        }
+    }
+    latOrigin = cityOrig.latitude;
+    lonOrigin = cityOrig.longitude;
 
-    const cityDest = allTrips.forEach(country => country.cities.filter(city => city.city === cityDestination.value))
-    latDestination = cityDest.latitude
-    lonDestination = cityDest.longitude
+    let cityDest 
+    for (let i = 0; i < allTrips.length; i++) {
+        if(allTrips[i].country === countryDestination.value){
+            cityDest = allTrips[i]['cities'].find(city => city.city === cityDestination.value);
+        }
+    }
+
+    latDestination = cityDest.latitude;
+    lonDestination = cityDest.longitude;
 }
 
 //Renderizar a distância 
@@ -151,8 +161,8 @@ function renderDistance() {
       lonDestination - lonOrigin
     );
   
-    const originLatitudeRadians = degreesToRadians(latDestination);
-    const destinationLatitudeRadians = degreesToRadians(lonDestination);
+    const originLatitudeRadians = degreesToRadians(latOrigin);
+    const destinationLatitudeRadians = degreesToRadians(latDestination);
   
     const kmDistance =
       2 *
@@ -166,8 +176,8 @@ function renderDistance() {
               Math.sin(diffLongitudeRadians / 2)
         )
       );
-  
-    distance = kmDistance.toFixed(2)
+
+    distance = kmDistance
 }
 
 // Renderizar o preço
@@ -176,23 +186,21 @@ function renderPrice() {
     countryOrigin.value === countryDestination.value ? costTicketChild = distance * 0.15 : costTicketChild = distance * 0.25;
 
     if (radioFirstClass.checked) {
-        costTicketAdult = helperFormatMoney(costTicketAdult * 1.8);
-        costTicketChild = helperFormatMoney(costTicketChild * 1.4);
+        costTicketAdult = costTicketAdult * 1.8;
+        costTicketChild = costTicketChild * 1.4;
     }
 
     totalCost = (costTicketAdult * adults.value) + (costTicketChild * children.value);
     
     miles !== 0 && ticketWithMiles();
-
-    costTicketAdult = helperFormatMoney(costTicketAdult)
-    costTicketChild = helperFormatMoney(costTicketChild)
-    totalCost = helperFormatMoney(totalCost)
-    miles = helperFormatValue(miles)
 };
 
 //Template literals com os resultados
 function renderResults() {
+    renderLatAndLon()
+    renderDistance()
     renderPrice()
+
     //se cidade igual de origem e destino
     if (cityOrigin.value === cityDestination.value) {
         results.innerHTML = `
@@ -204,14 +212,14 @@ function renderResults() {
         <h2>Resumo da viagem</h2>
         <p>Origem: ${countryOrigin.value}</p>
         <p>Destino: ${countryDestination.value} </p>
-        <p>Distância: ${distance}km</p>
-        <p>${adults.value} adultos, ${children.value} crianças</span></p>
+        <p>Distância: ${helperFormatValue(distance)}km</p>
+        <p>${helperFormatValue(adults.value)} adultos, ${helperFormatValue(children.value)} crianças</span></p>
         <p>Tipo de voo: Classe ${radioFirstClass.checked ? 'Executiva' : 'Econômica'}</p>
-        <p>${costTicketAdult} por adulto</p>
-        <p>${costTicketChild} por criança</p>
-        <p>Valor total das passagens: ${totalCost}</p>
-        <p>Quantidade de milhas usadas: ${miles} milhas</p>
-        <p>Valor economizado por milhas: ${milesCost}</p>
+        <p>${helperFormatMoney(costTicketAdult)} por adulto</p>
+        <p>${helperFormatMoney(costTicketChild)} por criança</p>
+        <p>Valor total das passagens: ${helperFormatMoney(totalCost)}</p>
+        <p>Quantidade de milhas usadas: ${helperFormatValue(miles)} milhas</p>
+        <p>Valor economizado por milhas: ${helperFormatMoney(milesCost)}</p>
         `
     }
 }
